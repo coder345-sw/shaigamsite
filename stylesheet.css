@@ -1,0 +1,36 @@
+body {
+    background-color: aquamarine;
+}
+#header{
+    background-color: hotpink;
+    text-align: center;
+    border-width: 1px;
+    border-style: dashed;
+    border-color: hotpink;
+}
+img{
+    border-radius: 50%;
+    width: 50%;
+    height: 25%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: hotpink;
+    display: block;
+}
+#list{
+    border-width: 1px;
+    border-style: solid;
+    border-color: lightcoral;
+    padding: 15px;
+    margin-left: 35%;
+}
+#navlinks{
+    position: fixed;
+}
+#footer{
+    background-color: cyan;
+    border-width: 5px;
+    border-style: solid;
+    border-color: darkblue;
+    text-align: center;
+}

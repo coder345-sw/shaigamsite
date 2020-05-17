@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Bomb.gd" type="Script" id=1]
+[ext_resource path="res://bomb.png" type="Texture" id=2]
+
+[node name="bomb" type="Area2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -2.30011, 1.47018 )
+scale = Vector2( 0.852868, 0.807255 )
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -2.30011, 1.47018 )
+scale = Vector2( 0.852868, 0.807255 )
+polygon = PoolVector2Array( 28, -49.5, 28, -47, 31, -42.1, 31, -32.4, 30.3, -26.5, 32.4, -20.5, 37.2, -20.5, 47.5, -30.9, 50, -29.8, 50, -21.6, 37.8, -10.5, 33.4, -10.5, 37, -4, 37, 3.5, 38.3, 12.5, 36.8, 12.5, 35.8, 22.5, 34.2, 22.5, 28.2, 34.5, 26.8, 34.5, 17.8, 43.5, 15.5, 43.5, 5.5, 48.5, 1.2, 48.5, -12, 49.7, -12, 48.2, -22, 46.1, -22, 44.9, -28, 42.9, -28, 41.4, -41, 29.4, -41, 27, -46, 17, -46, 11.5, -47.2, 0.5, -45.8, 0.5, -44.8, -8.5, -43.2, -8.5, -36.2, -21.5, -34.7, -21.5, -24.8, -30.5, -22.3, -30.5, -17, -32.8, -12.3, -43.5, -3.8, -43.5, 3, -52.2, 24, -52.5 )
+[connection signal="input_event" from="." to="." method="_on_bomb_input_event"]
