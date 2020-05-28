@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Game.gd" type="Script" id=1]
+[ext_resource path="res://RockBG.png" type="Texture" id=2]
+[ext_resource path="res://player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://HOMOARAK.TTF" type="DynamicFontData" id=4]
+[ext_resource path="res://UkuleleSong.wav" type="AudioStream" id=5]
+[ext_resource path="res://Coin01.wav" type="AudioStream" id=6]
+[ext_resource path="res://Bomb-SoundBible.com-891110113.wav" type="AudioStream" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 28
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 23
+font_data = ExtResource( 4 )
+
+[node name="Game" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 511.185, 295.426 )
+scale = Vector2( 4.26886, 3.73084 )
+texture = ExtResource( 2 )
+
+[node name="player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 67.59, 527.424 )
+
+[node name="coinSpawner" type="Timer" parent="."]
+
+[node name="BombSpawner" type="Timer" parent="."]
+
+[node name="Ui" type="CanvasLayer" parent="."]
+
+[node name="GameOver" type="Label" parent="Ui"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -30.5
+margin_right = 512.0
+margin_bottom = 30.5
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.00784314, 0.886275, 0.870588, 1 )
+text = "you caught fire then touched a bomb, 
+GAME OVER!"
+align = 1
+
+[node name="score" type="Label" parent="Ui"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.00784314, 0.886275, 0.870588, 1 )
+text = "score: 0"
+
+[node name="bgsong" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+
+[node name="coinpickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+
+[node name="Bombhit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+[connection signal="timeout" from="coinSpawner" to="." method="_on_coinSpawner_timeout"]
+[connection signal="timeout" from="BombSpawner" to="." method="_on_BombSpawner_timeout"]
