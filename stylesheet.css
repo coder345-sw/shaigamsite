@@ -5,7 +5,7 @@ body {
     background-color: hotpink;
     text-align: center;
     border-width: 1px;
-    border-style: dashed;
+    border-style: solid;
     border-color: hotpink;
 }
 img{
