@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://game.gd" type="Script" id=1]
+[ext_resource path="res://sky1.png" type="Texture" id=2]
+[ext_resource path="res://player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sounds/bgmidea2.wav" type="AudioStream" id=5]
+[ext_resource path="res://Sounds/No Hope.wav" type="AudioStream" id=6]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 16.1913, -1.54642, 0, 0, 0, 0, 1017.72, -1.54642, 0, 0, 0, 0, 1019.88, 602.825, 0, 0, 0, 0, -3.23496, 600.667, 0, 0, 0, 0, 16.1913, -1.54642 )
+}
+
+[node name="game" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="background" type="Sprite" parent="."]
+position = Vector2( 510.738, 298.403 )
+scale = Vector2( 0.534494, 0.502916 )
+texture = ExtResource( 2 )
+
+[node name="player" parent="." instance=ExtResource( 3 )]
+
+[node name="enemytimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="enemypath" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="enemyspawn" type="PathFollow2D" parent="enemypath"]
+position = Vector2( 16.1913, -1.54642 )
+rotation = -3.05079e-008
+
+[node name="scoretimer" type="Timer" parent="."]
+
+[node name="starttimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="UI" parent="." instance=ExtResource( 4 )]
+
+[node name="music_boi" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+
+[node name="ded" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+[connection signal="hit" from="player" to="." method="_on_player_hit"]
+[connection signal="timeout" from="enemytimer" to="." method="_on_enemytimer_timeout"]
+[connection signal="timeout" from="scoretimer" to="." method="_on_scoretimer_timeout"]
+[connection signal="timeout" from="starttimer" to="." method="_on_starttimer_timeout"]
+[connection signal="startgame" from="UI" to="." method="_on_UI_startgame"]
